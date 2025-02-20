@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema; //make this reference to let the reuse shortly
+const { Schema } = mongoose; //make this reference to let the reuse shortly
 
 const CampgroundSchema = new Schema({
     title: String,
