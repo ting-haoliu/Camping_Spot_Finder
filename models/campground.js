@@ -3,7 +3,8 @@ const { Schema } = mongoose; //make this reference to let the reuse shortly
 
 const CampgroundSchema = new Schema({
     title: String,
-    price: String,
+    image: String,
+    price: Number,
     description: String,
     location: String
 });
