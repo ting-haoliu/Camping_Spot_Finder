@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('node:path');
 const mongoose = require('mongoose');
@@ -5,7 +6,8 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
 
-mongoose.connect('mongodb+srv://dev-cluster:BHwOWheFaHRrEsK2@cluster0.7fte5.mongodb.net/yelp-camp');
+console.log("MongoDB URI:", process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

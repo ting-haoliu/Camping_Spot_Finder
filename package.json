@@ -11,6 +11,7 @@
   "author": "Tinghao Liu <liu.tingh@northeastern.edu>",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^4.21.2",
