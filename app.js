@@ -1,16 +1,18 @@
 require('dotenv').config();
+const mongoose = require('mongoose');
 const express = require('express');
 const path = require('node:path');
-const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate'); // used for layout
-const { campgroundSchema } = require('./schemas'); //server side validation
+const methodOverride = require('method-override'); // HTML just support Get and POST
+
+const { campgroundSchema, reviewSchema } = require('./schemas'); //server side validation
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
-const methodOverride = require('method-override');
 const Campground = require('./models/campground');
+const Review = require('./models/review');
 
-console.log("MongoDB URI:", process.env.MONGO_URI);
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/yelp-camp');
+const databaseUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/yelp-camp';
+mongoose.connect(databaseUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -29,6 +31,16 @@ app.use(methodOverride('_method'));
 
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(element => element.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+}
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(element => element.message).join(',');
         throw new ExpressError(msg, 400);
@@ -63,7 +75,7 @@ app.post('/campgrounds', validateCampground, catchAsync(async (req, res, next) =
 
 // Show the campground that you click
 app.get('/campgrounds/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
+    const campground = await Campground.findById(req.params.id).populate('reviews');
     res.render('campgrounds/show', { campground });
 }));
 
@@ -84,6 +96,25 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
     res.redirect('/campgrounds');
+}));
+
+// Add new review
+app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+
+    campground.reviews.push(review);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
+}));
+
+// delete a review
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/campgrounds/${id}`);
 }));
 
 // It will appear when there is no function matched
