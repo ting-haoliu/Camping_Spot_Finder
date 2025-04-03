@@ -26,7 +26,8 @@ const seedDB = async () => {
                 image: 'https://picsum.photos/300/300',
                 price,
                 description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque voluptas dolores qui non, facilis repellendus omnis corrupti tenetur consectetur eos! Voluptas nostrum fuga quasi voluptatum doloremque sunt dolores ea repudiandae',
-                location: `${sample(cities).city}, ${sample(cities).state}`
+                location: `${sample(cities).city}, ${sample(cities).state}`,
+                author: '67eaf2f07d4c0ff9fa16b574'
             });
             await camp.save();
         }
