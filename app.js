@@ -1,4 +1,7 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const mongoose = require('mongoose');
 const express = require('express');
 const path = require('node:path');
@@ -29,6 +32,7 @@ db.once("open", () => {
 
 
 const app = express();
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsMate);
@@ -59,17 +63,11 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
-    console.log(req.session);
+    // console.log(req.session);
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
-});
-
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({ email: 'adam@gmail.com', username: 'Adam' });
-    const newUser = await User.register(user, 'chicken');
-    res.send(newUser);
 });
 
 
