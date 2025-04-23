@@ -25,12 +25,24 @@ const seedDB = async () => {
                 title: `${sample(descriptors)} ${sample(places)}`,
                 images: [
                     {
-                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745279209/YelpCamp/j0pys1ojagaykteqs79o.jpg',
-                        filename: 'YelpCamp/j0pys1ojagaykteqs79o',
+                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745451337/lex-sirikiat-oT4hTqWoZ6M-unsplash_qbmx8l.jpg',
+                        filename: 'YelpCamp/camp1',
                     },
                     {
-                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745279209/YelpCamp/lrpsu3uoy3ub6v7nfuu2.jpg',
-                        filename: 'YelpCamp/lrpsu3uoy3ub6v7nfuu2',
+                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745451337/huang-gugu-XFdbJErDA9k-unsplash_y83gn6.jpg',
+                        filename: 'YelpCamp/camp2',
+                    },
+                    {
+                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745451337/jack-cohen-pCYlHZAXfMI-unsplash_pxsosl.jpg',
+                        filename: 'YelpCamp/camp3',
+                    },
+                    {
+                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745451337/bryce-wendler-tWiwsYHWqzs-unsplash_scofbu.jpg',
+                        filename: 'YelpCamp/camp4',
+                    },
+                    {
+                        url: 'https://res.cloudinary.com/dqwtiueci/image/upload/v1745451110/lindsay-doyle-d5eVCBBOZY4-unsplash_nfb9th.jpg',
+                        filename: 'YelpCamp/camp5',
                     }
                 ],
                 price,
