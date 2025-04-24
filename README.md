@@ -11,6 +11,10 @@ YelpCamp is a full-stack web application that allows users to browse, create, an
 - Flash messages and input validation
 - Responsive design using Bootstrap
 
+## Screenshot
+
+![Homepage](./screenshot/home.png)
+
 ## Test User
 
 You can use the following account to log in and explore the app without creating a new user:  
