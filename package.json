@@ -11,7 +11,7 @@
   "author": "Tinghao Liu <liu.tingh@northeastern.edu>",
   "license": "ISC",
   "dependencies": {
-    "cloudinary": "^2.6.0",
+    "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
