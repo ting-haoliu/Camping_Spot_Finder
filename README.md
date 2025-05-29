@@ -1,5 +1,5 @@
-# YelpCamp
-YelpCamp is a full-stack web application that allows users to browse, create, and review campgrounds. Inspired by Yelp, this app lets outdoor enthusiasts share information and experiences about various camping spots.
+# Camping Spot Finder
+This is a full-stack web application that allows users to browse, create, and review campgrounds. This app lets outdoor enthusiasts share information and experiences about various camping spots.
 
 ## Features
 
@@ -46,7 +46,7 @@ You can use the following account to log in and explore the app without creating
 ## Installation
 1. clone the project
    ```bash
-   git clone https://github.com/ting-haoliu/YelpCamp.git
+   git clone https://github.com/ting-haoliu/Camping_Spot_Finder.git
 
 2. install all dependencies listed in the package.json file
    ```bash
